@@ -28,7 +28,17 @@ to work with iterable sequences.
 
 ## Installation
 
-TODO
+To add quickiter package to your project, use the following commands:
+
+```
+npm install --save quickiter
+```
+
+or
+
+```
+yarn add quickiter
+```
 
 ## Documentation
 

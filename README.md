@@ -2,6 +2,8 @@
 
 Fast iterator library.
 
+[![Build Status](https://travis-ci.org/foxbunny/quickiter.svg?branch=master)](https://travis-ci.org/foxbunny/quickiter)
+
 ## Overview
 
 This library provides functions and objects for iterating over sequences 

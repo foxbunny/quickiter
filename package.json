@@ -9,7 +9,7 @@
     "test": "jest",
     "dist": "rollup -c",
     "preversion": "npm test",
-    "version": "npm run dist && git add dist"
+    "postversion": "npm run dist"
   },
   "repository": {
     "type": "git",

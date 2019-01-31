@@ -4,11 +4,14 @@ Fast iterator library.
 
 ## Overview and motivation
 
-This library provides functionality similar to several packages on NPM. 
-Unlike most of those packages, this library does *not* use the new ES6 
-generators. Instead it uses only the iterator protocol. This yields (pun 
-intended) a significant performance improvement while more or less completely
-retaining the functionality of generator based iterators.
+This library provides functions and objects for iterating over sequences 
+using the [iteration protocol](https://mzl.la/2HACVDf).
+
+Its functionality similar to several packages on NPM. Unlike most of those 
+packages, this library does *not* use the new ES6 generators. Instead it uses
+only the iterator protocol. This yields (pun intended) a significant 
+performance improvement while more or less completely retaining the 
+functionality of generator based iterators.
 
 ## Is this a replacement for generators?
 

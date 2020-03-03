@@ -86,6 +86,18 @@ const concatenated = Iter.from('quick').concat('iter')
 Array.from(concatenated)  // => ['q', 'u', 'i', 'c', 'k', 'i', 't', 'e', 'r']
 ```
 
+### `#enumerate()`
+
+Add indices to the iterable. This results in each value in the iterable to be
+converted into an array with two elements, the value and its index. Indices are 
+0-based.
+
+```javascript
+const enumerated = Iter.from([1, 2, 3]).enumerate()
+
+Array.from(zipped)  // => [[1, 0], [2, 1], [3, 2]]
+```
+
 ### `#zip(iterable)`
 
 Zips the iterable with another `iterable`. Iterating over this iterable will 

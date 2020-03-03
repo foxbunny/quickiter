@@ -65,6 +65,19 @@ passed, the resulting sequence is terminated at that value (not including it).
 
 This function **does not throw** when one of the arguments is a non-iterable.
 
+## `enumerate(iterable)`
+
+All of the functions for working with iterables will not return an index of
+each item within the sequence. This function wraps an iterable to return the
+index of each item in the sequence while iterating. Indices are 0-based.
+
+```javascript
+const { enumerate } = require('quickiter')
+
+const itr = enumerate('123')
+Array.from(itr)  // => [['1', 0], ['2', 1], ['3', 2]]
+```
+
 ## `zip(iterable1, iterable2)`
 
 Creates an iterable that allows simultaneous iteration over two supplied 

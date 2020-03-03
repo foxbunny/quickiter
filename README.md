@@ -44,8 +44,8 @@ yarn add quickiter
 
 - [Terminology](docs/terminology.md)
 - [Why iterators?](./docs/introduction.md)
-- [Iteration functions]('./docs/functions.md)
-- [Iterable wrapper object]('./docs/iter.md)
+- [Iteration functions](./docs/functions.md)
+- [Iterable wrapper object](./docs/iter.md)
 
 ## Benchmarks
 

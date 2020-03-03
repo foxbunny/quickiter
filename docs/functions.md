@@ -13,7 +13,7 @@ const { iter } = require('quickiter')
 const itr = iter([1, 2, 3])
 itr.next()  // => { done: false, value: 1 }
 
-const sitr = iter('123')
+const itr = iter('123')
 itr.next()  // => { done: false, value: '1' }
 ```
 

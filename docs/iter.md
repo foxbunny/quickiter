@@ -109,6 +109,22 @@ const enumerated = Iter.from([1, 2, 3]).enumerate()
 Array.from(zipped)  // => [[1, 0], [2, 1], [3, 2]]
 ```
 
+### `#cycle()`
+
+Converts the iterable to a version that can sustain multiple iterations.
+
+```javascript
+const i = Iter.from([1, 2, 3]).cycle()
+
+Array.from(i)  // => [1, 2, 3]
+Array.from(i)  // => [1, 2, 3]
+````
+
+This method caches the values of the first iteration. This means that if
+you have iterables created using `map()` and similar functions, the callbacks
+will **not** be evaluated on second and later iterations. This is effectively
+a caching iterator as well.
+
 ### `#zip(iterable)`
 
 Zips the iterable with another `iterable`. Iterating over this iterable will 
@@ -129,6 +145,18 @@ const zipped2 = Iter.from([1, 2, 3]).zip('a')
 
 Array.from(zipped)  // => [[1, 'a']]
 ``` 
+
+## `#combine(iterable)`
+
+Combines this iterable with another one to create an iterable of all possible
+combinations of items in both iterables. Please keep in mind that this will 
+only work if the `iterable` argument is a finite iterable.
+
+```javascript
+const itr = Iter.from([1, 2, 3]).combine([4, 5, 6])
+
+Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
+```
 
 ## `#forEach(fn)`
 

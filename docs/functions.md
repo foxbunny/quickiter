@@ -95,6 +95,25 @@ const itr = enumerate('123')
 Array.from(itr)  // => [['1', 0], ['2', 1], ['3', 2]]
 ```
 
+## `cycle(iterable)`
+
+Normally, iterators will finish when they are exhausted, and cannot be
+iterated again. This function returns an iterator that allows multiple
+iterations over the original one.
+
+```javascript
+const { cycle } = require('quickiter')
+
+const itr = cycle('123')
+Array.from(itr)  // => ['1', '2', '3']
+Array.from(itr)  // => ['1', '2', '3']
+```
+
+This function caches the values of the first iteration. This means that if
+you have iterables created using `map()` and similar functions, the callbacks
+will **not** be evaluated on second and later iterations. This is effectively
+a caching iterator as well.
+
 ## `zip(iterable1, iterable2)`
 
 Creates an iterable that allows simultaneous iteration over two supplied 
@@ -113,3 +132,15 @@ Array.from(itr2)  // => [[1, 4]]
 
 The resulting iterable will stop at the end of the shorter of the two 
 iterables.
+
+## `combine(iterable1, iterable2)`
+
+This function creates app possible combinations of the items in two iterables.
+Unlike other functions, it is very important that the second iterable is finite.
+
+```javascript
+const { combine } = require('quickiter')
+
+const itr = combine([1, 2, 3], [4, 5, 6])
+Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
+```

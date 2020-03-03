@@ -8,10 +8,6 @@ export default [
     input: 'lib/index.js',
     output: [
       {
-        format: 'esm',
-        file: pkg.module
-      },
-      {
         format: 'umd',
         file: pkg.browser,
         name: 'quickiter',

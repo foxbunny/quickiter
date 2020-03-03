@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "description": "Fast iterator library",
   "main": "lib/index.js",
-  "module": "dist/quickiter.mjs",
   "browser": "dist/quickiter.js",
   "scripts": {
     "test": "jest",

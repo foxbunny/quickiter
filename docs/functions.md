@@ -65,6 +65,23 @@ passed, the resulting sequence is terminated at that value (not including it).
 
 This function **does not throw** when one of the arguments is a non-iterable.
 
+## `flatten(iterables)`
+
+Given an iterable of iterables, this function flattens them by one level in
+to a single iterable for iterating over the items of all inner iterables as a 
+single sequence.
+
+```javascript
+const { flatten } = require('quickiter')
+
+const itr = flatten([[1, 2, 3], [4, 5, 6]])
+Array.from(itr)  // => [1, 2, 3, 4, 5, 6]
+```
+
+This is similar to `concat()`, but it is implemented differently (more 
+efficiently) internally. If you are string from an array of arrays, for example,
+it is more efficient to use `flatten()`, than to apply `concat()` to the array.
+
 ## `enumerate(iterable)`
 
 All of the functions for working with iterables will not return an index of

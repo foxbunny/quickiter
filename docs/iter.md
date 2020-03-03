@@ -86,6 +86,17 @@ const concatenated = Iter.from('quick').concat('iter')
 Array.from(concatenated)  // => ['q', 'u', 'i', 'c', 'k', 'i', 't', 'e', 'r']
 ```
 
+### `#flatten()`
+
+Flattens the wrapped iterable of iterables by chaining all inner iterables
+into a single sequence.
+
+```javascript
+const flat = Iter.from([[1, 2], [3, 4]]).flatten()
+
+Array.from(flat)  // => [1, 2, 3, 4]
+```
+
 ### `#enumerate()`
 
 Add indices to the iterable. This results in each value in the iterable to be

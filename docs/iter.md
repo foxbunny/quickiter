@@ -5,6 +5,12 @@ methods similar to those found on the `Array` prototype.
 
 Every `Iter` object is both an iterable and an iterator.
 
+The descriptions of the methods on the `Iter` object are usually a bit sparse. 
+This is because these methods work mostly the same way as the 
+[functions](./functions.md) in this package with the first iterable argument
+being an `Iter` object. Please refer to the function documentation for more
+information.
+
 ## Creating an instance
 
 An `Iter` instance is created from an iterable. This can be either one of the
@@ -144,9 +150,55 @@ ends.
 const zipped2 = Iter.from([1, 2, 3]).zip('a')
 
 Array.from(zipped)  // => [[1, 'a']]
-``` 
+```
 
-## `#combine(iterable)`
+### `#groupBy(pred)`
+
+Group the items in the iterable by the label returned by the predicate. The
+returned value is an array of objects, each object having two properties: 
+`label`, which is a value returned by the predicate, and `values`, which is
+array of values in the group.
+
+```javascript
+let people = [
+  {group: 'a', name: 'John'},
+  {group: 'a', name: 'Alice'},
+  {group: 'a', name: 'Mike'},
+  {group: 'b', name: 'Jane'},
+  {group: 'b', name: 'Bob'},
+  {group: 'c', name: 'Tanya'},
+]
+const grouped = Iter.from(people).groupBy(p => p.group)
+
+Array.from(grouped)
+/* =>
+  
+  [
+    { 
+      label: 'a', 
+      values: [
+        {group: 'a', name: 'John'},
+        {group: 'a', name: 'Alice'},
+        {group: 'a', name: 'Mike'},
+      ],
+    },
+    {
+      label: 'b',
+      values: [
+        {group: 'b', name: 'Jane'},
+        {group: 'b', name: 'Bob'},
+      ],
+    },
+    ....
+  ]
+*/
+```
+
+Note that the groups are only formed by adjacent objects for which the
+predicate returns a value. If predicate returns the same values for two 
+non-consecutive objects, those object end up in two different groups.
+
+### `#combine(iterable)`
 
 Combines this iterable with another one to create an iterable of all possible
 combinations of items in both iterables. Please keep in mind that this will 

@@ -144,3 +144,52 @@ const { combine } = require('quickiter')
 const itr = combine([1, 2, 3], [4, 5, 6])
 Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
 ```
+
+## `groupBy(iterable, pred)`
+
+This function groups items of an iterable by a value returned by the
+predicate function `pred()`. The predicate is invoked with with each item and
+is expected to return a value that will serve as a label. The returned iterable 
+will contain arrays of objects, each having `label` and `values` properties. 
+The `label` property is the value returned by `pred()` for a given group, and 
+the group values are contained in the `values` array.
+
+```javascript
+const { groupBy } = require('quickiter')
+
+let people = [
+  {group: 'a', name: 'John'},
+  {group: 'a', name: 'Alice'},
+  {group: 'a', name: 'Mike'},
+  {group: 'b', name: 'Jane'},
+  {group: 'b', name: 'Bob'},
+  {group: 'c', name: 'Tanya'},
+]
+
+Array.from(groupBy(people, p => p.group))
+/* =>
+  
+  [
+    { 
+      label: 'a', 
+      values: [
+        {group: 'a', name: 'John'},
+        {group: 'a', name: 'Alice'},
+        {group: 'a', name: 'Mike'},
+      ],
+    },
+    {
+      label: 'b',
+      values: [
+        {group: 'b', name: 'Jane'},
+        {group: 'b', name: 'Bob'},
+      ],
+    },
+    ....
+  ]
+*/
+```
+
+Note that the groups are only formed by adjacent objects for which the
+predicate returns a value. If predicate returns the same values for two 
+non-consecutive objects, those object end up in two different groups.

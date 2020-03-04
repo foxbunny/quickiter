@@ -152,6 +152,18 @@ const zipped2 = Iter.from([1, 2, 3]).zip('a')
 Array.from(zipped)  // => [[1, 'a']]
 ```
 
+### `#combine(iterable)`
+
+Combines this iterable with another one to create an iterable of all possible
+combinations of items in both iterables. Please keep in mind that this will 
+only work if the `iterable` argument is a finite iterable.
+
+```javascript
+const itr = Iter.from([1, 2, 3]).combine([4, 5, 6])
+
+Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
+```
+
 ### `#groupBy(pred)`
 
 Group the items in the iterable by the label returned by the predicate. The
@@ -198,19 +210,13 @@ Note that the groups are only formed by adjacent objects for which the
 predicate returns a value. If predicate returns the same values for two 
 non-consecutive objects, those object end up in two different groups.
 
-### `#combine(iterable)`
+### `#touch(fn)`
 
-Combines this iterable with another one to create an iterable of all possible
-combinations of items in both iterables. Please keep in mind that this will 
-only work if the `iterable` argument is a finite iterable.
+This method is similar to `forEach()` but instead of simply invoking the
+callback, it also returns an iterable that has the same contents as this
+iterable.
 
-```javascript
-const itr = Iter.from([1, 2, 3]).combine([4, 5, 6])
-
-Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
-```
-
-## `#forEach(fn)`
+### `#forEach(fn)`
 
 Invokes the `fn` function for each value until the iterable is exhausted (if 
 ever).

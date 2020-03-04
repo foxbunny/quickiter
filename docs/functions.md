@@ -193,3 +193,22 @@ Array.from(groupBy(people, p => p.group))
 Note that the groups are only formed by adjacent objects for which the
 predicate returns a value. If predicate returns the same values for two 
 non-consecutive objects, those object end up in two different groups.
+
+## `touch(iterable, fn)`
+
+This function returns an iterable that will not transform the items in the
+original iterable, but will invoke the provided callback for each one. This
+is useful for writing code that has side effects but no direct effect on the
+iterable.
+
+```javascript
+const { touch } = require('quickiter')
+
+const i = touch([1, 2, 3], x => console.log('seen ' + x))
+const a = Array.from(i)
+// => seen 1
+// => seen 2
+// => seen 3
+console.log(a)
+// => [1, 2, 3]
+```

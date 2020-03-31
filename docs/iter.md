@@ -216,6 +216,40 @@ This method is similar to `forEach()` but instead of simply invoking the
 callback, it also returns an iterable that has the same contents as this
 iterable.
 
+### `#skip(n)`
+
+Skips the first `n` items of the iterable.
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.skip(2)
+Array.from(i)
+// [3, 4]
+```
+
+### `#take(n)`
+
+Takes the next `n` items of the iterable.
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.take(2)
+Array.from(i)
+// [1, 2]
+```
+
+### `#slice(start, end)`
+
+Limits iteration of items starting with the 0-based index `start` and ending
+at index `end` (not including the item at index `end`).
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.slice(1, 3)
+Array.from(i)
+// [2, 3]
+```
+
 ### `#forEach(fn)`
 
 Invokes the `fn` function for each value until the iterable is exhausted (if 

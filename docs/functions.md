@@ -212,3 +212,42 @@ const a = Array.from(i)
 console.log(a)
 // => [1, 2, 3]
 ```
+
+## `skip(iterable, n)`
+
+Returns an iterable that will omit the first `n` items. Note that `n` is an 
+item count, not an index.
+
+```javascript
+const { skip } = require('quickiter')
+
+const i = skip('abcdef', 2)
+const a = Array.from(i)
+// ['c', 'd', 'e', 'f']
+```
+
+## `take(iterable, n)`
+
+Returns an iterable that stops iteration after the `n`-th item. Note that `n` 
+is an item count, not an index.
+
+```javascript
+const { take } = require('quickiter')
+
+const i = take('abcdef', 2)
+const a = Array.from(i)
+// ['a', 'b']
+```
+
+## `slice(iterable, start, end)`
+
+Returns an iterable that starts iteration at the specified `start` index, 
+and ends at the `end` index (not including the item at `end` index).
+
+```javascript
+const { slice } = require('quickiter')
+
+const i = slice('abcdef', 2, 4)
+const a = Array.from(i)
+// ['c', 'd']
+```

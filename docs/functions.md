@@ -17,6 +17,86 @@ const itr = iter('123')
 itr.next()  // => { done: false, value: '1' }
 ```
 
+## `range(n, [m], [step])`
+
+This function creates an iterable that represents a range of numbers. It can
+be called using several forms:
+
+- `range(end)`
+- `range(start, end)`
+- `range(end, null, step)`
+- `range(start, end, step)`
+
+The sequence created by this function starts with 0 if only the end of the
+range is specified. For instance:
+
+```javascript
+Array.from(range(3))
+// => [0, 1, 2]
+```
+
+The final value, `end`, is never included in the range. If a negative value is
+specified as the end, then the sequence will be in reverse order:
+
+```javascript
+Array.from(range(-3))
+// => [0, -1, -2]
+```
+
+If both start and end are specified, the sequence will start from the `start`, 
+and count until (but not including) `end`.
+
+```javascript
+Array.from(range(2, 6))
+// => [2, 3, 4, 5]
+```
+
+If the `end` value is smaller than `start`, the sequence is reversed.
+
+```javascript
+Array.from(range(6, 2))
+// => [6, 5, 4, 3]
+```
+
+The `step` value can be used to specify the distance between adjacent numbers
+in the sequence. For example:
+
+```javascript
+Array.from(range(6, null, 2))
+// => [0, 2, 4]
+```
+
+`step` is always treated as an absolute distance, so passing a negative value 
+is the same as passing a positive one. The direction in which the sequence is
+formed is determined solely using the `start` and `end` values.
+
+```javascript
+Array.from(range(6, null, -2))
+// => [0, 2, 4]
+```
+
+The `step` argument can be combined with `end`.
+
+```javascript
+Array.from(range(6, -2, 2))
+// => [6, 4, 2, 0]
+```
+
+The `range()` function is not limited to integers. By using floats for `step`, 
+we can create a sequence of floats.
+
+```javascript
+Array.from(range(3, null, 0.5))
+// => [0, 0.5, 1, 1.5, 2, 2.5]
+```
+
+Because range creates an iterable, rather than an array, it is possible to
+create an infinite sequence:
+
+```javascript
+const positiveEvenNums = range(2, Infinity, 2)
+```
+
 ## `map(iterable, fn)`
 
 Creates an iterable where each value is obtained by calling `fn` on the 

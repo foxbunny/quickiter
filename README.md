@@ -9,7 +9,7 @@ Fast iterator library.
 This library provides functions and objects for iterating over sequences 
 using the [iteration protocol](https://mzl.la/2HACVDf).
 
-See [introduction](./docs/introduction.md) for a more in-dept introduction to
+See [introduction](./docs/introduction.md) for a more in-depth introduction to
 iterators.
 
 ## Motivation

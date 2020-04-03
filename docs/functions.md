@@ -194,6 +194,10 @@ you have iterables created using `map()` and similar functions, the callbacks
 will **not** be evaluated on second and later iterations. This is effectively
 a caching iterator as well.
 
+Also note that since this function uses an array to cache the values, it will 
+use more memory than plain iteration, and it cannot be used for very long
+sequences.
+
 ## `zip(iterable1, iterable2)`
 
 Creates an iterable that allows simultaneous iteration over two supplied 

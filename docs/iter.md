@@ -250,6 +250,18 @@ Array.from(i)
 // [2, 3]
 ```
 
+### `#partition(count, includePartial)`
+
+Groups the iterable into arrays of specified item count. Optionally includes
+a last partial group.
+
+```javascript
+const i = Iter.from([1, 2, 3, 4, 5])
+i.partition(2, true)
+Array.from(i)
+// [[1, 2], [3, 4], [5]]
+```
+
 ### `#forEach(fn)`
 
 Invokes the `fn` function for each value until the iterable is exhausted (if 

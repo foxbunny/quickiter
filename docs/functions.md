@@ -335,3 +335,21 @@ const i = slice('abcdef', 2, 4)
 const a = Array.from(i)
 // ['c', 'd']
 ```
+
+## `partition(iterable, count, includePartial)`
+
+Returns an iterable that divides the input iterable into equally sized arrays 
+of specified item count. Optionally includes a partial last group if any.
+
+```javascript
+const { partition } = require('quickiter')
+
+const i = partition('123456789', 3)
+const a = Array.from(i)
+// [['1', '2', '3'], ['5', '6', '7']]
+
+const iPartial = partition('123456789', 3, true)
+const aPartial = Array.from(iPartial)
+// [['1', '2', '3'], ['5', '6', '7'], ['8', '9']]
+```
+

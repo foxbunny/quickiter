@@ -238,6 +238,50 @@ Array.from(i)
 // [1, 2]
 ```
 
+### `#takeFrom(fn)`
+
+Takes items starting from the first one for which `fn` returns `true.
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.takeFrom(x => x === 2)
+Array.from(i)
+// [2, 3, 4]
+```
+
+### `#takeUntil(fn)`
+
+Takes items until (and including) the first one for which `fn` returns `true`.
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.takeUntil(x => x === 2)
+Array.from(i)
+// [1, 2]
+```
+
+**TIP:** If you wish to filter a *contiguous* range of items, using a 
+combination of `.takeFrom()` and `.takeUntil()` is more efficient than using 
+`.filter()` because the latter must always exhaust the iterable, while 
+`.takeUntil()` stops at the first matching item.
+
+### `#takeWhile(fn)`
+
+Takes items while the `fn` returns `true` (or until, but not including, the 
+first one for which `fn` returns `false`).
+
+```javascript
+const i = Iter.form([1, 2, 3, 4])
+i.takeUntil(x => x <= 2)
+Array.from(i)
+// [1, 2]
+```
+
+**NOTE:** The first unmatched element from the iterable is discarded. This is
+usually fine, but may not be what you want if you are using a stateful iterable.
+In such cases, your needs may be better served by `takeUntil()` and a modified
+condition.
+
 ### `#slice(start, end)`
 
 Limits iteration of items starting with the 0-based index `start` and ending

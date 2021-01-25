@@ -1,6 +1,6 @@
 # Iteration function
 
-The Quickiter library consists of stand-alone iteration functions and an 
+The Quickiter library consists of stand-alone iteration functions and an
 [`Iter` constructor](./iter.md). This document discusses the functions.
 
 ## `iter(iterable)`
@@ -19,32 +19,30 @@ itr.next()  // => { done: false, value: '1' }
 
 ## `range(n, [m], [step])`
 
-This function creates an iterable that represents a range of numbers. It can
-be called using several forms:
+This function creates an iterable that represents a range of numbers. It can be called using several forms:
 
 - `range(end)`
 - `range(start, end)`
 - `range(end, null, step)`
 - `range(start, end, step)`
 
-The sequence created by this function starts with 0 if only the end of the
-range is specified. For instance:
+The sequence created by this function starts with 0 if only the end of the range is specified. For instance:
 
 ```javascript
 Array.from(range(3))
 // => [0, 1, 2]
 ```
 
-The final value, `end`, is never included in the range. If a negative value is
-specified as the end, then the sequence will be in reverse order:
+The final value, `end`, is never included in the range. If a negative value is specified as the end, then the sequence
+will be in reverse order:
 
 ```javascript
 Array.from(range(-3))
 // => [0, -1, -2]
 ```
 
-If both start and end are specified, the sequence will start from the `start`, 
-and count until (but not including) `end`.
+If both start and end are specified, the sequence will start from the `start`, and count until (but not including) `end`
+.
 
 ```javascript
 Array.from(range(2, 6))
@@ -58,17 +56,15 @@ Array.from(range(6, 2))
 // => [6, 5, 4, 3]
 ```
 
-The `step` value can be used to specify the distance between adjacent numbers
-in the sequence. For example:
+The `step` value can be used to specify the distance between adjacent numbers in the sequence. For example:
 
 ```javascript
 Array.from(range(6, null, 2))
 // => [0, 2, 4]
 ```
 
-`step` is always treated as an absolute distance, so passing a negative value 
-is the same as passing a positive one. The direction in which the sequence is
-formed is determined solely using the `start` and `end` values.
+`step` is always treated as an absolute distance, so passing a negative value is the same as passing a positive one. The
+direction in which the sequence is formed is determined solely using the `start` and `end` values.
 
 ```javascript
 Array.from(range(6, null, -2))
@@ -82,16 +78,14 @@ Array.from(range(6, -2, 2))
 // => [6, 4, 2, 0]
 ```
 
-The `range()` function is not limited to integers. By using floats for `step`, 
-we can create a sequence of floats.
+The `range()` function is not limited to integers. By using floats for `step`, we can create a sequence of floats.
 
 ```javascript
 Array.from(range(3, null, 0.5))
 // => [0, 0.5, 1, 1.5, 2, 2.5]
 ```
 
-Because range creates an iterable, rather than an array, it is possible to
-create an infinite sequence:
+Because range creates an iterable, rather than an array, it is possible to create an infinite sequence:
 
 ```javascript
 const positiveEvenNums = range(2, Infinity, 2)
@@ -99,8 +93,7 @@ const positiveEvenNums = range(2, Infinity, 2)
 
 ## `map(iterable, fn)`
 
-Creates an iterable where each value is obtained by calling `fn` on the 
-corresponding value from the `iterable`.
+Creates an iterable where each value is obtained by calling `fn` on the corresponding value from the `iterable`.
 
 ```javascript
 const { map } = require('quickiter')
@@ -111,8 +104,7 @@ Array.from(itr)  // => [2, 3, 4]
 
 ## `filter(iterable, fn)`
 
-Creates an iterable of values in `iterable` for which `fn` returns a truthy 
-value.
+Creates an iterable of values in `iterable` for which `fn` returns a truthy value.
 
 ```javascript
 const { filter } = require('quickiter')
@@ -126,8 +118,8 @@ Array.from(itr)  // => ['orange', 'tangerine', 'mango']
 
 ## `concat(...iterables)`
 
-Takes one or more iterables and creates an iterable that allows iteration 
-over all of the supplied iterables as if they were a single sequence.
+Takes one or more iterables and creates an iterable that allows iteration over all of the supplied iterables as if they
+were a single sequence.
 
 ```javascript
 const { concat } = require('quickiter')
@@ -139,17 +131,15 @@ const itr2 = concat([1, 2, 3], 4, [5, 6, 7])
 Array.from(itr2)  // => [1, 2, 3]
 ```
 
-This function does not really concatenate anything, and unlike arrays, it 
-does not accept non-iterables as arguments. When a non-iterable value is 
-passed, the resulting sequence is terminated at that value (not including it).
+This function does not really concatenate anything, and unlike arrays, it does not accept non-iterables as arguments.
+When a non-iterable value is passed, the resulting sequence is terminated at that value (not including it).
 
 This function **does not throw** when one of the arguments is a non-iterable.
 
 ## `flatten(iterables)`
 
-Given an iterable of iterables, this function flattens them by one level in
-to a single iterable for iterating over the items of all inner iterables as a 
-single sequence.
+Given an iterable of iterables, this function flattens them by one level in to a single iterable for iterating over the
+items of all inner iterables as a single sequence.
 
 ```javascript
 const { flatten } = require('quickiter')
@@ -158,15 +148,13 @@ const itr = flatten([[1, 2, 3], [4, 5, 6]])
 Array.from(itr)  // => [1, 2, 3, 4, 5, 6]
 ```
 
-This is similar to `concat()`, but it is implemented differently (more 
-efficiently) internally. If you are string from an array of arrays, for example,
-it is more efficient to use `flatten()`, than to apply `concat()` to the array.
+This is similar to `concat()`, but it is implemented differently (more efficiently) internally. If you are string from
+an array of arrays, for example, it is more efficient to use `flatten()`, than to apply `concat()` to the array.
 
 ## `enumerate(iterable)`
 
-All of the functions for working with iterables will not return an index of
-each item within the sequence. This function wraps an iterable to return the
-index of each item in the sequence while iterating. Indices are 0-based.
+All of the functions for working with iterables will not return an index of each item within the sequence. This function
+wraps an iterable to return the index of each item in the sequence while iterating. Indices are 0-based.
 
 ```javascript
 const { enumerate } = require('quickiter')
@@ -177,9 +165,8 @@ Array.from(itr)  // => [['1', 0], ['2', 1], ['3', 2]]
 
 ## `cycle(iterable)`
 
-Normally, iterators will finish when they are exhausted, and cannot be
-iterated again. This function returns an iterator that allows multiple
-iterations over the original one.
+Normally, iterators will finish when they are exhausted, and cannot be iterated again. This function returns an iterator
+that allows multiple iterations over the original one.
 
 ```javascript
 const { cycle } = require('quickiter')
@@ -189,20 +176,17 @@ Array.from(itr)  // => ['1', '2', '3']
 Array.from(itr)  // => ['1', '2', '3']
 ```
 
-This function caches the values of the first iteration. This means that if
-you have iterables created using `map()` and similar functions, the callbacks
-will **not** be evaluated on second and later iterations. This is effectively
-a caching iterator as well.
+This function caches the values of the first iteration. This means that if you have iterables created using `map()` and
+similar functions, the callbacks will **not** be evaluated on second and later iterations. This is effectively a caching
+iterator as well.
 
-Also note that since this function uses an array to cache the values, it will 
-use more memory than plain iteration, and it cannot be used for very long
-sequences.
+Also note that since this function uses an array to cache the values, it will use more memory than plain iteration, and
+it cannot be used for very long sequences.
 
 ## `zip(iterable1, iterable2)`
 
-Creates an iterable that allows simultaneous iteration over two supplied 
-iterables. Each value of the resulting iterable is an array of two values 
-from the  inputs.
+Creates an iterable that allows simultaneous iteration over two supplied iterables. Each value of the resulting iterable
+is an array of two values from the inputs.
 
 ```javascript
 const { zip } = require('quickiter')
@@ -214,13 +198,12 @@ const itr2 = zip([1, 2, 3], [4])
 Array.from(itr2)  // => [[1, 4]]
 ```
 
-The resulting iterable will stop at the end of the shorter of the two 
-iterables.
+The resulting iterable will stop at the end of the shorter of the two iterables.
 
 ## `combine(iterable1, iterable2)`
 
-This function creates app possible combinations of the items in two iterables.
-Unlike other functions, it is very important that the second iterable is finite.
+This function creates app possible combinations of the items in two iterables. Unlike other functions, it is very
+important that the second iterable is finite.
 
 ```javascript
 const { combine } = require('quickiter')
@@ -231,12 +214,10 @@ Array.from(itr)  // => [[1, 4], [1, 5], [1, 6], [2, 4], [2, 5], ....]
 
 ## `groupBy(iterable, pred)`
 
-This function groups items of an iterable by a value returned by the
-predicate function `pred()`. The predicate is invoked with with each item and
-is expected to return a value that will serve as a label. The returned iterable 
-will contain arrays of objects, each having `label` and `values` properties. 
-The `label` property is the value returned by `pred()` for a given group, and 
-the group values are contained in the `values` array.
+This function groups items of an iterable by a value returned by the predicate function `pred()`. The predicate is
+invoked with with each item and is expected to return a value that will serve as a label. The returned iterable will
+contain arrays of objects, each having `label` and `values` properties. The `label` property is the value returned
+by `pred()` for a given group, and the group values are contained in the `values` array.
 
 ```javascript
 const { groupBy } = require('quickiter')
@@ -274,15 +255,13 @@ Array.from(groupBy(people, p => p.group))
 */
 ```
 
-Note that the groups are only formed by adjacent objects for which the
-predicate returns a value. If predicate returns the same values for two 
-non-consecutive objects, those object end up in two different groups.
+Note that the groups are only formed by adjacent objects for which the predicate returns a value. If predicate returns
+the same values for two non-consecutive objects, those object end up in two different groups.
 
 ## `touch(iterable, fn)`
 
-This function returns an iterable that will not transform the items in the
-original iterable, but will invoke the provided callback for each one. This
-is useful for writing code that has side effects but no direct effect on the
+This function returns an iterable that will not transform the items in the original iterable, but will invoke the
+provided callback for each one. This is useful for writing code that has side effects but no direct effect on the
 iterable.
 
 ```javascript
@@ -299,8 +278,7 @@ console.log(a)
 
 ## `skip(iterable, n)`
 
-Returns an iterable that will omit the first `n` items. Note that `n` is an 
-item count, not an index.
+Returns an iterable that will omit the first `n` items. Note that `n` is an item count, not an index.
 
 ```javascript
 const { skip } = require('quickiter')
@@ -312,7 +290,7 @@ const a = Array.from(i)
 
 ## `take(iterable, n)`
 
-Returns an iterable that stops iteration after the `n`-th item. Note that `n` 
+Returns an iterable that stops iteration after the `n`-th item. Note that `n`
 is an item count, not an index.
 
 ```javascript
@@ -323,10 +301,58 @@ const a = Array.from(i)
 // ['a', 'b']
 ```
 
+## `takeFrom(iterable, fn)`
+
+Returns an iterable that starts the iteration from the first value for which 
+`fn` returns `true`.
+
+```javascript
+const { takeFrom } = require('quickiter')
+
+const i = takeFrom('abcdef', x => x === 'c')
+const a = Array.from(i)
+// ['c', 'd', 'e', 'f']
+```
+
+## `takeUntil(iterable, fn)`
+
+Returns an iterable that iterates until (and including) the first value for
+which `fn` returns `true`.
+
+```javascript
+const { takeUntil } = require('quickiter')
+
+const i = takeUntil('abcdef', x => x === 'c')
+const a = Array.from(i)
+// ['a', 'b', 'c']
+```
+
+**TIP:** If you wish to filter a *contiguous* range of items, using a
+combination of `takeFrom()` and `takeUntil()` is more efficient than using
+`filter()` because the latter must always exhaust the iterable, while
+`takeUntil()` stops at the first matching item.
+
+## `takeWhile(iterable, fn)`
+
+Returns an iterable that iterates while the `fn` returns `true` for values.
+
+```javascript
+const { takeWhile } = require('quickiter')
+
+const i = takeUntil('abcdef', x => x !== 'c')
+const a = Array.from(i)
+// ['a', 'b']
+```
+
+**NOTE:** The first unmatched element from the source iterable is discarded. 
+This is usually fine, but may not be what you want if you are using a stateful
+iterable. In such cases, your needs may be better served by `takeUntil()` and 
+a modified condition.
+
 ## `slice(iterable, start, end)`
 
-Returns an iterable that starts iteration at the specified `start` index, 
-and ends at the `end` index (not including the item at `end` index).
+Returns an iterable that starts iteration at the specified `start` index, and ends at the `end` index (not including the
+item at `end` index).
 
 ```javascript
 const { slice } = require('quickiter')
@@ -338,8 +364,8 @@ const a = Array.from(i)
 
 ## `partition(iterable, count, includePartial)`
 
-Returns an iterable that divides the input iterable into equally sized arrays 
-of specified item count. Optionally includes a partial last group if any.
+Returns an iterable that divides the input iterable into equally sized arrays of specified item count. Optionally
+includes a partial last group if any.
 
 ```javascript
 const { partition } = require('quickiter')

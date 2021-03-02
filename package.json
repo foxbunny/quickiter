@@ -1,14 +1,15 @@
 {
   "name": "quickiter",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "Fast iterator library",
-  "main": "lib/index.js",
-  "browser": "dist/quickiter.js",
+  "main": "dist/index.js",
+  "module": "lib/index.js",
+  "browser": "dist/index.js",
   "scripts": {
     "test": "jest",
-    "dist": "rollup -c",
-    "preversion": "npm test",
-    "prepublish": "npm run dist"
+    "dist": "babel lib/ --out-dir dist/",
+    "preversion": "yarn test",
+    "prepublish": "yarn dist"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,15 @@
       "beforeAll"
     ]
   },
+  "babel": {
+    "plugins": [
+      "@babel/plugin-transform-modules-umd"
+    ]
+  },
   "devDependencies": {
+    "@babel/cli": "^7.13.0",
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-modules-umd": "^7.13.0",
     "jest": "^26.1.0",
     "rollup": "^2.18.2",
     "rollup-plugin-commonjs": "^10.1.0",
